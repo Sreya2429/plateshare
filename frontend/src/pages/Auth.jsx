@@ -10,6 +10,7 @@ export default function Auth({
   onSwitchMode,
 }) {
   const [mode, setMode] = useState(initialMode);
+  const [loginType, setLoginType] = useState('user');
   const [form, setForm] = useState({ name: '', email: '', phone: '', user_type: 'Individual', password: '' });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -46,7 +47,7 @@ export default function Auth({
     try {
       const data = isRegister
         ? await api.post('register.php', form)
-        : await api.post('login.php', { email: form.email, password: form.password });
+        : await api.post('login.php', { email: form.email, password: form.password, login_type: loginType });
       onAuthed(data.user, isRegister);
     } catch (err) {
       setError(err.message);
@@ -62,6 +63,30 @@ export default function Auth({
       <Message type="error">{error}</Message>
 
       <form className="form" onSubmit={handleSubmit} noValidate>
+        {!isRegister && (
+          <fieldset className="login-toggle">
+            <legend>Choose login type</legend>
+            <div className="login-toggle-options">
+              <button
+                type="button"
+                className={loginType === 'user' ? 'selected' : ''}
+                aria-pressed={loginType === 'user'}
+                onClick={() => setLoginType('user')}
+              >
+                User Login
+              </button>
+              <button
+                type="button"
+                className={loginType === 'admin' ? 'selected' : ''}
+                aria-pressed={loginType === 'admin'}
+                onClick={() => setLoginType('admin')}
+              >
+                Admin Login
+              </button>
+            </div>
+          </fieldset>
+        )}
+
         {isRegister && (
           <div className="field">
             <label htmlFor="name">Name</label>

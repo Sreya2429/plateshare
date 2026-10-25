@@ -162,6 +162,12 @@ main.container { padding-block: 1.75rem 3rem; min-height: 70vh; }
 .form-page { max-width: 560px; margin-inline: auto; }
 .form-page h1 { margin-bottom: 1.25rem; }
 .form { display: grid; gap: 1.1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem; }
+.login-toggle { min-width: 0; margin: 0; padding: 0; border: 0; }
+.login-toggle legend { margin-bottom: 0.4rem; font-weight: 600; font-size: 0.95rem; }
+.login-toggle-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem; padding: 0.25rem; border: 1px solid var(--line); border-radius: 8px; background: #f0f4ef; }
+.login-toggle-options button { min-height: 42px; padding: 0.5rem; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--muted); font: inherit; font-weight: 600; cursor: pointer; }
+.login-toggle-options button.selected { border-color: var(--line); background: var(--surface); color: var(--green-dark); box-shadow: 0 1px 2px rgb(23 38 30 / 10%); }
+.login-toggle-options button:focus-visible { outline-offset: 1px; }
 .field { display: grid; gap: 0.3rem; }
 .field label { font-weight: 600; font-size: 0.95rem; }
 .field small { color: var(--muted); }
