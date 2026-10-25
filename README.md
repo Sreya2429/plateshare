@@ -76,10 +76,6 @@ Open **http://localhost:5173**. Vite forwards `/api/*` to the PHP server, so log
 - Expired food is still shown (the brief asks for no automatic expiry), but it is marked Expired and cannot be booked.
 - Passwords are stored with `password_hash()` (bcrypt), and every query uses prepared statements.
 
-## Testing
-
-The backend was tested against MariaDB 10.11 with PHP 8.3. That covered register and login, the booking and cancelling flow, permission checks, validation, cascade delete, and two simultaneous bookings. The React app was exercised end to end in a simulated browser (jsdom) against the real API. It has not been checked visually in a real browser, so give the layout a quick look on your machine, including on a phone-width window.
-
 ## Future enhancements
 
 Maps and distance, delivery, notifications, ratings, photos, automatic expiry, an admin dashboard.
