@@ -16,6 +16,7 @@ import Auth from './pages/Auth';
 import AddFood from './pages/AddFood';
 import MyListings from './pages/MyListings';
 import MyBookings from './pages/MyBookings';
+import AdminDashboard from './pages/AdminDashboard';
 
 function ProtectedRoute({ user, children }) {
   if (!user) {
@@ -70,6 +71,7 @@ export default function App() {
       add: '/add',
       listings: '/listings',
       bookings: '/bookings',
+      admin: '/admin',
       login: '/login',
       register: '/register',
     };
@@ -128,6 +130,7 @@ export default function App() {
     '/add': 'add',
     '/listings': 'listings',
     '/bookings': 'bookings',
+    '/admin': 'admin',
   };
 
   const page = pagePaths[location.pathname] || 'home';
@@ -232,6 +235,19 @@ export default function App() {
                   showFlash={showFlash}
                 />
               </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin"
+            element={
+              !user ? (
+                <Navigate to="/login" replace state={{ notice: 'Log in as an administrator to continue.' }} />
+              ) : user.role !== 'admin' ? (
+                <Navigate to="/" replace />
+              ) : (
+                <AdminDashboard user={user} />
+              )
             }
           />
 

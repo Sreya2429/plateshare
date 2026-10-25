@@ -14,8 +14,10 @@ CREATE TABLE users (
   email      VARCHAR(150) NOT NULL UNIQUE,
   phone      VARCHAR(20)  NOT NULL,
   user_type  VARCHAR(20)  NOT NULL,
+  role       VARCHAR(20)  NOT NULL DEFAULT 'user',
   password   VARCHAR(255) NOT NULL,  
-  CONSTRAINT chk_user_type CHECK (user_type IN ('Individual', 'Organization'))
+  CONSTRAINT chk_user_type CHECK (user_type IN ('Individual', 'Organization')),
+  CONSTRAINT chk_user_role CHECK (role IN ('user', 'admin'))
 ) ENGINE=InnoDB;
 
 

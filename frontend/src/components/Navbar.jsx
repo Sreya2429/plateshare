@@ -6,6 +6,7 @@ const PATHS = {
   add: '/add',
   listings: '/listings',
   bookings: '/bookings',
+  admin: '/admin',
   login: '/login',
 };
 
@@ -18,6 +19,7 @@ export default function Navbar({ user, onLogout }) {
         ['add', 'Add Food'],
         ['listings', 'My Listings'],
         ['bookings', 'My Bookings'],
+        ...(user.role === 'admin' ? [['admin', 'Admin Dashboard']] : []),
       ]
     : [['home', 'Home']];
 

@@ -32,5 +32,5 @@ $_SESSION['user_id'] = (int) $pdo->lastInsertId();
 
 respond([
     'success' => true,
-    'user'    => ['user_id' => $_SESSION['user_id'], 'name' => $name, 'email' => $email, 'phone' => $phone, 'user_type' => $user_type],
+    'user'    => ['user_id' => $_SESSION['user_id'], 'name' => $name, 'email' => $email, 'phone' => $phone, 'user_type' => $user_type, 'role' => 'user'],
 ], 201);

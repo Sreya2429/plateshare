@@ -33,6 +33,14 @@ mysql -u root -p < database/schema.sql
 
 Set `DB_USER` and `DB_PASS` for your MySQL (XAMPP default is `root` with an empty password). Set `APP_TIMEZONE` to your own timezone, because food times are stored without a timezone.
 
+For an existing database, apply `database/migrations/add_user_roles.sql` once. Existing accounts become normal users. Promote an account to admin directly in the database after verifying its owner, for example:
+
+```sql
+UPDATE users SET role = 'admin' WHERE email = 'admin@example.com';
+```
+
+Registration always creates a normal user; the role cannot be supplied through the app.
+
 **3. Add sample data (optional)**
 
 ```bash
@@ -66,6 +74,7 @@ Open **http://localhost:5173**. Vite forwards `/api/*` to the PHP server, so log
 | Add Food | Validated form, status starts as Available | `INSERT` |
 | My Listings | Edit, delete, and see who booked each item | `UPDATE`, `DELETE`, `LEFT JOIN` |
 | My Bookings | Booking history with poster contact, cancel button | `JOIN` across bookings, listings, users; `UPDATE` |
+| Admin Dashboard | Manage users, inspect all listings and bookings, delete listings | Admin-only PHP APIs; existing listing-to-booking cascade |
 
 ## Decisions the brief left open
 

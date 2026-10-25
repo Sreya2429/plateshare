@@ -76,6 +76,19 @@ function require_login(): int
     return (int) $_SESSION['user_id'];
 }
 
+/** Return the logged-in admin's id, or stop with an authorization error. */
+function require_admin(PDO $pdo): int
+{
+    $user_id = require_login();
+    $stmt = $pdo->prepare('SELECT role FROM users WHERE user_id = ?');
+    $stmt->execute([$user_id]);
+
+    if ($stmt->fetchColumn() !== 'admin') {
+        fail('Administrator access is required.', 403);
+    }
+    return $user_id;
+}
+
 /** Trim a string input safely. */
 function clean($value): string
 {
