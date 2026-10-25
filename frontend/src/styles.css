@@ -242,6 +242,7 @@ input:focus, select:focus { border-color: var(--green); outline: 3px solid var(-
     background-image:
       linear-gradient(rgba(244, 247, 242, 0.56), rgba(244, 247, 242, 0.56)),
       url('/Hands%20Sharing%20a%20Homemade%20Meal.png');
+    background-size: auto, 100% auto;
     background-position: left top;
   }
   .field-row { grid-template-columns: 1fr; }
