@@ -111,7 +111,31 @@ main.container { padding-block: 1.75rem 3rem; min-height: 70vh; }
 .message-close { background: none; border: 0; font-size: 1.4rem; line-height: 1; cursor: pointer; color: inherit; padding: 0 0.25rem; }
 
 /* Logged-out introduction */
-.intro { max-width: 720px; padding-top: 1.5rem; }
+.intro {
+  position: relative;
+  isolation: isolate;
+  max-width: 720px;
+  min-height: calc(100svh - 64px);
+  padding-block: clamp(3rem, 8vh, 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.intro::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -1.75rem;
+  bottom: -3rem;
+  left: min(-1rem, calc((1080px - 100vw) / 2));
+  width: 100vw;
+  background-image:
+    linear-gradient(90deg, rgba(244, 247, 242, 0.62) 0%, rgba(244, 247, 242, 0.56) 44%, rgba(244, 247, 242, 0.38) 70%, rgba(244, 247, 242, 0.18) 100%),
+    url('/Hands%20Sharing%20a%20Homemade%20Meal.png');
+  background-size: cover;
+  background-position: left top;
+  background-repeat: no-repeat;
+}
 .intro h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); }
 .lead { font-size: 1.15rem; color: var(--muted); margin-top: 1rem; max-width: 60ch; }
 .intro-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.75rem; }
@@ -214,6 +238,12 @@ input:focus, select:focus { border-color: var(--green); outline: 3px solid var(-
 .site-footer { padding-block: 1.5rem 2rem; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); }
 
 @media (max-width: 520px) {
+  .intro::before {
+    background-image:
+      linear-gradient(rgba(244, 247, 242, 0.56), rgba(244, 247, 242, 0.56)),
+      url('/Hands%20Sharing%20a%20Homemade%20Meal.png');
+    background-position: left top;
+  }
   .field-row { grid-template-columns: 1fr; }
   .nav { width: 100%; }
   .nav-link { padding-inline: 0.6rem; }
